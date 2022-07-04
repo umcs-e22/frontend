@@ -23,10 +23,10 @@ const Header: React.FC<any> = (): JSX.Element | null => {
               <div className="flex items-center">
                 <img
                   className="h-10 w-10 p-1"
-                  src="https://cdn3.iconfinder.com/data/icons/round-icons-vol-1-2/120/run-512.png"
+                  src="https://cdn1.iconfinder.com/data/icons/self-care-during-self-quarantine/512/mind-care-08-1024.png"
                   alt="logo"
                 />
-                <div className="m-2 text-lg">SureTime</div>
+                <div className="m-2 text-lg">BookShop</div>
               </div>
             </Link>
             {logged ? (
@@ -37,7 +37,7 @@ const Header: React.FC<any> = (): JSX.Element | null => {
                     src="https://mkszatokabraniewo.pl/wp-content/uploads/2021/03/avatar.jpg"
                     alt="logo"
                   />
-                  <div className="m-2 text-lg">Przemysław Sałek</div>
+                  <div className="m-2 text-lg">Zalogowano</div>
                 </div>
               </Link>
             ) : (

@@ -1,9 +1,8 @@
 import React from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
 
 const BoxPlayersList: React.FC<any> = () => {
-  const [players, setPlayers] = React.useState([]);
+  const [books, setBooks] = React.useState([]);
 
   const mounted: any = React.useRef();
   React.useEffect(() => {
@@ -15,18 +14,24 @@ const BoxPlayersList: React.FC<any> = () => {
     }
   });
 
-  console.log(players);
+  console.log(books);
 
   const getPlayers = () => {
     axios
-      .get("/api/v1/persons")
-      .then((res) => setPlayers(res.data.content))
+      .get("/v1/books")
+      .then((res) => setBooks(res.data))
       .catch((err) => console.log(err));
   };
 
+  const addToCart = (bookId: string) => {
+    axios.post("v1/carts/add", {
+      booksUUID: [bookId],
+    });
+  }
+
   return (
     <div className="flex flex-col">
-      {players?.length > 0 && (
+      {books?.length > 0 && (
         <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
             <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
@@ -37,52 +42,30 @@ const BoxPlayersList: React.FC<any> = () => {
                       scope="col"
                       className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                     >
-                      Imię i nazwisko
+                      Tytuł
                     </th>
                     <th
                       scope="col"
                       className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                     >
-                      Płeć
+                      Autor
                     </th>
                     <th
                       scope="col"
                       className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                     >
-                      Klub
-                    </th>
-                    <th
-                      scope="col"
-                      className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                    >
-                      Trener
-                    </th>
-                    <th scope="col" className="relative px-6 py-3">
-                      <span className="sr-only">Profil</span>
+                      Cena
                     </th>
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
-                  {players.map((player: any) => (
-                    <tr key={player.userUUID}>
+                  {books.map((book: any) => (
+                    <tr key={book.bookUUID}>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="flex items-center">
-                          <div className="flex-shrink-0 h-10 w-10">
-                            <img
-                              className="h-10 w-10 rounded-full"
-                              src="https://mkszatokabraniewo.pl/wp-content/uploads/2021/03/avatar.jpg"
-                              alt=""
-                            />
-                          </div>
                           <div className="ml-4">
                             <div className="text-sm font-medium text-gray-900">
-                              {player.firstName ? player.firstName : "Nieznane"}{" "}
-                              {player.secondName
-                                ? player.secondName
-                                : "Nieznane"}
-                            </div>
-                            <div className="text-sm text-gray-500">
-                              {player.email}
+                              {book.title ? book.title : "Nieznane"}{" "}
                             </div>
                           </div>
                         </div>
@@ -90,30 +73,24 @@ const BoxPlayersList: React.FC<any> = () => {
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="flex items-center">
                           <div className="text-sm font-medium text-gray-900">
-                            {player.gender ? player.gender : "Nieznana"}
+                            {book.author ? book.author : "Nieznana"}
                           </div>
                         </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="flex items-center">
                           <div className="text-sm font-medium text-gray-900">
-                            {player.club ? player.club : "Nieznany"}
-                          </div>
-                        </div>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="flex items-center">
-                          <div className="text-sm font-medium text-gray-900">
-                            {player.coach ? player.coach : "Nieznany"}
+                            {book.price ? book.price : "Brak Danych"}
                           </div>
                         </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-right text-sm text-blue-500 font-medium">
-                        <Link
-                          to={`/profile/${encodeURIComponent(player?.userUUID)}`}
+                        <button
+                          onClick={() => addToCart(book.bookUUID)}
+                          className="bg-emerald-600 p-2 rounded text-zinc-50"
                         >
-                          Zobacz profil
-                        </Link>
+                          Dodaj do koszyka
+                        </button>
                       </td>
                     </tr>
                   ))}

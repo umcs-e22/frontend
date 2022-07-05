@@ -1,4 +1,3 @@
-import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import BoxLogin from "../components/BoxLogin/BoxLogin";
@@ -16,8 +15,8 @@ function App() {
           element={<CustomPage title={"Strona główna"} box={MainPage} />}
         />
         <Route
-          path="/profile/:player"
-          element={<CustomPage title={"Profil zawodnika"} box={BoxProfile} />}
+          path="/cart"
+          element={<CustomPage title={"Koszyk"} box={BoxProfile} />}
         />
         <Route
           path="/login"

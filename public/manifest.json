@@ -1,6 +1,6 @@
 {
-  "short_name": "SureTime",
-  "name": "SureTime application",
+  "short_name": "BookShop",
+  "name": "BookShop application",
   "icons": [
     {
       "src": "logo.webp",

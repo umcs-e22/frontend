@@ -6,7 +6,7 @@ import Footer from "./elements/Footer";
 
 const CustomPage: React.FC<any> = ({ title, box }: any): JSX.Element | null => {
   React.useEffect(() => {
-    document.title = `${title} - SureTime`;
+    document.title = `${title} - BookShop`;
   });
 
   return (

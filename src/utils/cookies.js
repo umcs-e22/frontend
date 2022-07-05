@@ -12,3 +12,10 @@ export const setAccessToken = (token) => {
     maxAge: 86400, //Set access token on 1 day
   });
 }
+
+export const setUserUUID = (token) => {
+  cookies.set("userUUID", token, {
+    path: "/",
+    maxAge: 86400, //Set access token on 1 day
+  });
+};

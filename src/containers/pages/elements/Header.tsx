@@ -30,14 +30,14 @@ const Header: React.FC<any> = (): JSX.Element | null => {
               </div>
             </Link>
             {logged ? (
-              <Link to="/">
+              <Link to="/cart">
                 <div className="flex items-center">
                   <img
                     className="h-10 w-10 p-1 rounded-[50%]"
                     src="https://mkszatokabraniewo.pl/wp-content/uploads/2021/03/avatar.jpg"
                     alt="logo"
                   />
-                  <div className="m-2 text-lg">Zalogowano</div>
+                  <div className="m-2 text-lg rounded p-1 hover:bg-emerald-600">Koszyk</div>
                 </div>
               </Link>
             ) : (

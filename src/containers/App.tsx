@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import BoxBookManage from "../components/AdminProfile/BoxBooksManage";
 
 import BoxLogin from "../components/BoxLogin/BoxLogin";
 import BoxProfile from "../components/BoxProfile/BoxProfile";
@@ -25,6 +26,10 @@ function App() {
         <Route
           path="/register"
           element={<CustomPage title={"Rejestracja"} box={BoxRegister} />}
+        />
+        <Route
+          path="/manage"
+          element={<CustomPage title={"Zarządzanie"} box={BoxBookManage} />}
         />
       </Routes>
     </Router>

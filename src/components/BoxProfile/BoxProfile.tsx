@@ -35,9 +35,17 @@ const BoxPlayersList: React.FC<any> = () => {
       .then(() => getCart());
   };
 
+  const order = (cartUUID: string) => {
+    axios
+      .post("v1/orders", {
+        cartUUID,
+      })
+      .then(() => getCart());
+  };
+
   return (
     <div className="flex flex-col">
-      {cart?.books?.length > 0 && (
+      {cart?.books?.length > 0 ? (
         <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
             <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
@@ -79,7 +87,9 @@ const BoxPlayersList: React.FC<any> = () => {
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="flex items-center">
                           <div className="text-sm font-medium text-gray-900">
-                            {book.price ? book.price : "Nieznana"}
+                            {book.price
+                              ? (book.price * book.count).toFixed(2)
+                              : "Nieznana"}
                           </div>
                         </div>
                       </td>
@@ -107,14 +117,16 @@ const BoxPlayersList: React.FC<any> = () => {
                 </tbody>
               </table>
               <button
-                onClick={() => {}}
+                onClick={() => order(cart.cartUUID)}
                 className="bg-emerald-600 p-2 rounded text-zinc-50 w-full hover:bg-emerald-700"
               >
-                Zamów ({cart.price} zł)
+                Zamów ({cart.price.toFixed(2)} zł)
               </button>
             </div>
           </div>
         </div>
+      ) : (
+        <div>Koszyk jest pusty</div>
       )}
     </div>
   );

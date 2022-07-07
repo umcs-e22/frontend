@@ -26,8 +26,6 @@ const BoxBookManage: React.FC<any> = () => {
     }
   });
 
-  console.log(books);
-
   const getPlayers = () => {
     axios
       .get("/v1/books")

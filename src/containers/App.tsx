@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import BoxBookManage from "../components/AdminProfile/BoxBooksManage";
+import BoxOrdersManage from "../components/AdminProfile/BoxOrdersManage";
 
 import BoxLogin from "../components/BoxLogin/BoxLogin";
 import BoxProfile from "../components/BoxProfile/BoxProfile";
@@ -28,8 +29,12 @@ function App() {
           element={<CustomPage title={"Rejestracja"} box={BoxRegister} />}
         />
         <Route
-          path="/manage"
+          path="/manage/books"
           element={<CustomPage title={"Zarządzanie"} box={BoxBookManage} />}
+        />
+        <Route
+          path="/manage/orders"
+          element={<CustomPage title={"Zarządzanie"} box={BoxOrdersManage} />}
         />
       </Routes>
     </Router>

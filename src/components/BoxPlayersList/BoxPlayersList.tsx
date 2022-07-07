@@ -80,7 +80,7 @@ const BoxPlayersList: React.FC<any> = () => {
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="flex items-center">
                           <div className="text-sm font-medium text-gray-900">
-                            {book.price ? book.price * book.count : "Brak Danych"}
+                            {book.price ? book.price : "Brak Danych"}
                           </div>
                         </div>
                       </td>

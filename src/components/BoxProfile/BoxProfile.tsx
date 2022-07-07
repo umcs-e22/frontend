@@ -37,10 +37,22 @@ const BoxPlayersList: React.FC<any> = () => {
 
   const order = (cartUUID: string) => {
     axios
-      .post("v1/orders", {
+      .post("/v1/payments", {
         cartUUID,
+        totalAmount: (cart.price * 100).toFixed(0).toString(),
+        buyer: {
+          email: "example@wp.pl",
+          language: "pl",
+        },
+        products: cart.books.map((book: any) => ({
+          name: book.title,
+          unitPrice: (book.price.toFixed(2) * 100).toString(),
+          quantity: book.count.toString(),
+        })),
       })
-      .then(() => getCart());
+      .then((res: any) => {
+        window.location = res.data.redirectUri;
+      });
   };
 
   return (
